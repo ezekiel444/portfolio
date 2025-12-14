@@ -1,103 +1,160 @@
-import Image from "next/image";
+// app/page.tsx
+'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
+import { Music2, Radio, Youtube } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import fruitImages from './FoodImg';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [currentImage, setCurrentImage] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  // Fix hydration mismatch by waiting for client mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % fruitImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [mounted]);
+
+  // Preload next image
+  useEffect(() => {
+    if (!mounted) return;
+    
+    const nextIndex = (currentImage + 1) % fruitImages.length;
+    const img = new window.Image();
+    img.src = fruitImages[nextIndex].src;
+  }, [currentImage, mounted]);
+
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-[#6b7566] to-[#5a6355] flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Logo Section */}
+        <div className="flex flex-col items-center mb-8">
+          <div className="w-32 h-32 rounded-full bg-[#2d4a2d] flex items-center justify-center mb-6">
+            <span className="text-4xl font-bold text-[#e89b5c] italic">EML</span>
+          </div>
+          
+          <h1 className="text-4xl font-bold text-white mb-2">EZEKIEL Matomi Lucky</h1>
+          <p className="text-lg text-gray-300">Your daily dose of vitamin C</p>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="space-y-4 mb-8">
+          <Link 
+            href="/portfolio"
+            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            Portfolio
+          </Link>
+          
+          <Link 
+            href="/contact"
+            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
+          >
+            Contact
+          </Link>
+          
+          <Link 
+            href="/about"
+            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
+          >
+            About
+          </Link>
+          
+          <Link 
+            href="/blog"
+            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
+          >
+            Latest Posts
+          </Link>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-8 mb-8">
+          <a 
+            href="https://tiktok.com/@yourusername" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="TikTok"
+          >
+            <Music2 size={32} strokeWidth={1.5} />
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
+          
+          <a 
+            href="https://spotify.com/yourusername" 
+            target="_blank" 
             rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Spotify"
           >
-            Read our docs
+            <Radio size={32} strokeWidth={1.5} />
+          </a>
+          
+          <a 
+            href="https://youtube.com/@yourusername" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="YouTube"
+          >
+            <Youtube size={32} strokeWidth={1.5} />
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Optimized Fruits Image Carousel */}
+        <div className="relative h-64 overflow-hidden bg-[#5a6355]">
+          {/* Gradient overlays for blending */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#5a6355] via-transparent to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#6b7566] via-transparent to-transparent z-10 pointer-events-none"></div>
+          
+          {/* Only render images after mounting to avoid hydration issues */}
+          {mounted && fruitImages.map((img, index) => {
+            const nextIndex = (currentImage + 1) % fruitImages.length;
+            // Only render current and next image for performance
+            if (index !== currentImage && index !== nextIndex) return null;
+            
+            return (
+              <img
+                key={index}
+                src={img.src}
+                alt={img.alt}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  index === currentImage ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            );
+          })}
+        </div>
+
+        {/* Carousel indicators */}
+        {mounted && (
+          <div className="flex justify-center gap-2 mt-4">
+            {fruitImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImage(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === currentImage 
+                    ? 'bg-[#e89b5c] w-6' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
