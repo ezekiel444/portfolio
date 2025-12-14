@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
     qualities: [85],
     // You can also specify a range, for example:
     // qualities: [75, 80, 85, 90, 95, 100],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
