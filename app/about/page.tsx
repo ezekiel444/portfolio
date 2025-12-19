@@ -148,7 +148,12 @@ export default function AboutPage() {
                   }}
                 />
                 {/* Fallback */}
-                <span className="text-8xl font-bold text-[#e89b5c] z-10">EML</span>
+                <img 
+                  src="./about_profile_picx/about_me_picx.png" 
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+                {/* <span className="text-8xl font-bold text-[#e89b5c] z-10">EML</span> */}
               </div>
             </div>
             <div>
@@ -175,10 +180,10 @@ export default function AboutPage() {
                   <span className="font-semibold text-white">📍 Location:</span> Lyon, France
                 </p>
                 <p className="text-gray-300">
-                  <span className="font-semibold text-white">🔗 Portfolio:</span>{' '}
+                  {/* <span className="font-semibold text-white">🔗 Portfolio:</span>{' '}
                   <a href="https://matomi.netlify.app" target="_blank" rel="noopener noreferrer" className="text-[#e89b5c] hover:underline">
                     matomi.netlify.app
-                  </a>
+                  </a> */}
                 </p>
               </div>
             </div>
