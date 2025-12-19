@@ -1,6 +1,6 @@
 // app/blog/page.tsx
 import Link from 'next/link';
-import { Calendar, Clock, User } from 'lucide-react';
+import { Calendar, Clock, User } from '@icons-pack/react-simple-icons';
 
 const blogPosts = [
   {

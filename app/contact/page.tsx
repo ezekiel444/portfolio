@@ -1,6 +1,6 @@
 'use client';
-
-import { Send, Mail, Phone, MapPin, Facebook, Twitter, Github, Dribbble } from 'lucide-react';
+import Image from 'next/image';
+import { SiGmail, SiGooglemaps, SiFacebook, SiX, SiGithub } from '@icons-pack/react-simple-icons';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -36,11 +36,10 @@ export default function ContactPage() {
             {/* Address */}
             <div className="bg-[#252525] p-8 rounded-lg flex items-start gap-6">
               <div className="w-20 h-20 rounded-full border-2 border-teal-500 flex items-center justify-center flex-shrink-0">
-                <MapPin className="text-teal-500" size={32} />
+                <SiGooglemaps className="text-teal-500" size={32} />
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-2">Address</h3>
-                {/* <p className="text-gray-400">5th Avenue, 34th floor,</p> */}
                 <p className="text-gray-400">Lyon France</p>
               </div>
             </div>
@@ -48,11 +47,10 @@ export default function ContactPage() {
             {/* Email */}
             <div className="bg-[#252525] p-8 rounded-lg flex items-start gap-6">
               <div className="w-20 h-20 rounded-full border-2 border-teal-500 flex items-center justify-center flex-shrink-0">
-                <Mail className="text-teal-500" size={32} />
+                <SiGmail className="text-teal-500" size={32} />
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-2">Email</h3>
-                {/* <p className="text-gray-400">ezekielmatomi588@gmail.com</p> */}
                 <p className="text-gray-400">matomiezekiel6@gmail.com</p>
               </div>
             </div>
@@ -60,11 +58,14 @@ export default function ContactPage() {
             {/* Phone */}
             <div className="bg-[#252525] p-8 rounded-lg flex items-start gap-6">
               <div className="w-20 h-20 rounded-full border-2 border-teal-500 flex items-center justify-center flex-shrink-0">
-                <Phone className="text-teal-500" size={32} />
+             <Image 
+                    src="/logo/phone-call.svg"
+                    alt="Phone"
+                    width="32" 
+                    height="32" />
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-2">Phone</h3>
-                {/* <p className="text-gray-400">(33)-3512197571</p> */}
                 <p className="text-gray-400">(33)-3512197571</p>
               </div>
             </div>
@@ -137,16 +138,13 @@ export default function ContactPage() {
           
           <div className="flex gap-6">
             <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
-              <Facebook size={24} />
+              <SiFacebook size={24} />
             </a>
             <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
-              <Twitter size={24} />
+              <SiX size={24} />
             </a>
             <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
-              <Github size={24} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
-              <Dribbble size={24} />
+              <SiGithub size={24} />
             </a>
           </div>
         </footer>

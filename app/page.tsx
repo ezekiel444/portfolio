@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Music2, Radio, Youtube } from 'lucide-react';
+import {SiYoutube, SiTiktok, SiFacebook, SiGithub, SiGitlab, SiInstagram, SiX} from '@icons-pack/react-simple-icons';
 import { useState, useEffect } from 'react';
 import fruitImages from './FoodImg';
 
@@ -68,13 +68,7 @@ export default function Home() {
           >
             About
           </Link>
-          
-          {/* <Link 
-            href="/blog"
-            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
-          >
-            Latest Posts
-          </Link> */}
+  
         </div>
 
         {/* Social Icons */}
@@ -86,28 +80,84 @@ export default function Home() {
             className="text-white hover:text-[#e89b5c] transition-colors"
             aria-label="TikTok"
           >
-            <Music2 size={32} strokeWidth={1.5} />
+            <SiTiktok size={32} strokeWidth={1.5} />
           </a>
-          
+
           <a 
-            href="https://spotify.com/yourusername" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-white hover:text-[#e89b5c] transition-colors"
-            aria-label="Spotify"
-          >
-            <Radio size={32} strokeWidth={1.5} />
-          </a>
-          
-          <a 
-            href="https://youtube.com/@yourusername" 
+            href="https://www.youtube.com/channel/UC58Sc0rg86Fs0noTlIq7gNg" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-white hover:text-[#e89b5c] transition-colors"
             aria-label="YouTube"
           >
-            <Youtube size={32} strokeWidth={1.5} />
+            <SiYoutube size={32} strokeWidth={1.5} />
           </a>
+
+          <a 
+            href="https://faceboo" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Spotify"
+          >
+            <SiFacebook size={32} strokeWidth={1.5} />
+          </a>
+
+          <a 
+            href="https://github" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Spotify"
+          >
+            <SiGithub size={32} strokeWidth={1.5} />
+          </a>
+
+          <a 
+            href="https://github" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Spotify"
+          >
+            <SiX size={32} strokeWidth={1.5} />
+          </a>
+
+          <a 
+            href="https://github" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Spotify"
+          >
+            <SiGitlab size={32} strokeWidth={1.5} />
+          </a>
+
+          <a 
+            href="https://github" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Spotify"
+          >
+            <SiInstagram size={32} strokeWidth={1.5} />
+          </a>
+
+          <a 
+            href="https://linkedin" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#e89b5c] transition-colors"
+            aria-label="Linkedin"
+          >
+          <Image 
+              src="/logo/LinkedIn_icon.svg.webp"
+              alt="LinkedIn"
+              width="32" 
+              height="32" />
+          </a>
+          
+
         </div>
 
         {/* Optimized Fruits Image Carousel */}
@@ -123,14 +173,37 @@ export default function Home() {
             if (index !== currentImage && index !== nextIndex) return null;
             
             return (
-              <img
+              // <img
+              //   key={index}
+              //   src={img.src}
+              //   alt={img.alt}
+              //   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              //     index === currentImage ? 'opacity-100' : 'opacity-0'
+              //   }`}
+              // />
+              // <Image
+              //     key={index}
+              //     src={img.src}
+              //     alt={img.alt}
+              //     fill
+              //     priority={index === currentImage} // preload active image
+              //     sizes="100vw"
+              //     className={`object-cover transition-opacity duration-1000 ${
+              //       index === currentImage ? "opacity-100" : "opacity-0"
+              //     }`}
+              //   />
+              <Image
                 key={index}
                 src={img.src}
                 alt={img.alt}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                  index === currentImage ? 'opacity-100' : 'opacity-0'
+                fill
+                priority={index === currentImage}
+                sizes="(min-width: 1024px) 100vw, 100vw"
+                className={`object-cover transition-opacity duration-1000 ease-in-out ${
+                  index === currentImage ? "opacity-100" : "opacity-0"
                 }`}
               />
+
             );
           })}
         </div>
