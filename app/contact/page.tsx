@@ -1,4 +1,3 @@
-// app/contact/page.tsx
 'use client';
 
 import { Send, Mail, Phone, MapPin, Facebook, Twitter, Github, Dribbble } from 'lucide-react';
@@ -41,7 +40,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-2">Address</h3>
-                <p className="text-gray-400">5th Avenue, 34th floor,</p>
+                {/* <p className="text-gray-400">5th Avenue, 34th floor,</p> */}
                 <p className="text-gray-400">Lyon France</p>
               </div>
             </div>
@@ -53,7 +52,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-2">Email</h3>
-                <p className="text-gray-400">ezekielmatomi588@gmail.com</p>
+                {/* <p className="text-gray-400">ezekielmatomi588@gmail.com</p> */}
                 <p className="text-gray-400">matomiezekiel6@gmail.com</p>
               </div>
             </div>
@@ -65,7 +64,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-2">Phone</h3>
-                <p className="text-gray-400">(33)-3512197571</p>
+                {/* <p className="text-gray-400">(33)-3512197571</p> */}
                 <p className="text-gray-400">(33)-3512197571</p>
               </div>
             </div>

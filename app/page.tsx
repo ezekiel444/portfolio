@@ -1,4 +1,3 @@
-// app/page.tsx
 'use client';
 
 import Link from 'next/link';
@@ -11,7 +10,6 @@ export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
   const [mounted, setMounted] = useState(false);
 
-  // Fix hydration mismatch by waiting for client mount
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -45,7 +43,7 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl font-bold text-white mb-2">EZEKIEL Matomi Lucky</h1>
-          <p className="text-lg text-gray-300">Your daily dose of vitamin C</p>
+          <p className="text-lg text-gray-300">Support Open-Source community</p>
         </div>
 
         {/* Navigation Buttons */}
@@ -71,12 +69,12 @@ export default function Home() {
             About
           </Link>
           
-          <Link 
+          {/* <Link 
             href="/blog"
             className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
           >
             Latest Posts
-          </Link>
+          </Link> */}
         </div>
 
         {/* Social Icons */}
