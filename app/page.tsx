@@ -48,27 +48,28 @@ export default function Home() {
 
         {/* Navigation Buttons */}
         <div className="space-y-4 mb-8">
-          <Link 
-            href="/portfolio"
-            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
-          >
-            Portfolio
-          </Link>
-          
-          <Link 
-            href="/contact"
-            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
-          >
-            Contact
-          </Link>
-          
+
           <Link 
             href="/about"
             className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
           >
             About
           </Link>
-  
+
+         <Link 
+            href="/contact"
+            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
+          >
+            Contact
+          </Link> 
+
+          <Link 
+            href="/portfolio"
+            className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
+          >
+            Portfolio
+          </Link>
+ 
         </div>
 
         {/* Social Icons */}
@@ -173,25 +174,6 @@ export default function Home() {
             if (index !== currentImage && index !== nextIndex) return null;
             
             return (
-              // <img
-              //   key={index}
-              //   src={img.src}
-              //   alt={img.alt}
-              //   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              //     index === currentImage ? 'opacity-100' : 'opacity-0'
-              //   }`}
-              // />
-              // <Image
-              //     key={index}
-              //     src={img.src}
-              //     alt={img.alt}
-              //     fill
-              //     priority={index === currentImage} // preload active image
-              //     sizes="100vw"
-              //     className={`object-cover transition-opacity duration-1000 ${
-              //       index === currentImage ? "opacity-100" : "opacity-0"
-              //     }`}
-              //   />
               <Image
                 key={index}
                 src={img.src}

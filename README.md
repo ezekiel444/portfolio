@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Contact Form Email Setup Guide
 
-First, run the development server:
+## Step 1: Install Required Packages
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm add nodemailer isomorphic-dompurify
+pnpm add -D @types/nodemailer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Step 2: Setup Gmail App Password
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Go to your Google Account: https://myaccount.google.com/
+2. Click on "Security" in the left sidebar
+3. Enable "2-Step Verification" if not already enabled
+4. After enabling 2FA, go back to Security
+5. Search for "App passwords" or scroll down to find it
+6. Click "App passwords"
+7. Select "Mail" and "Other (Custom name)"
+8. Enter "Portfolio Contact Form"
+9. Click "Generate"
+10. Copy the 16-character password (save it securely!)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Step 3: Create Environment Variables
 
-## Learn More
+Create a `.env.local` file in your project root:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+EMAIL_USER=your-gmail@gmail.com
+EMAIL_PASSWORD=your-16-char-app-password
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Important:** Add `.env.local` to your `.gitignore` file!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Step 4: Project Structure
 
-## Deploy on Vercel
+Your project should look like this:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/
+├── api/
+│   └── contact/
+│       └── route.ts        (The API endpoint)
+├── contact/
+│   └── page.tsx           (The contact form)
+├── portfolio/
+│   └── page.tsx           (Portfolio with links)
+└── ...
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+.env.local                 (Your email credentials)
+```
+
+## Security Features Implemented
+
+### 1. **XSS Protection** (Cross-Site Scripting)
+- Uses `DOMPurify` to sanitize all user inputs
+- Strips all HTML tags and dangerous characters
+- Prevents malicious script injection
+
+### 2. **Input Validation**
+- Email format validation with regex
+- Length limits on all fields (prevents buffer overflow)
+- Required field validation
+
+### 3. **Rate Limiting** (Recommended)
+For production, add rate limiting to prevent spam:
+
+```bash
+pnpm add @upstash/ratelimit @upstash/redis
+```
+
+## Alternative Email Services
+
+### Using SendGrid (Recommended for production)
+
+```bash
+pnpm add @sendgrid/mail
+```
+
+Update your API route:
+
+```typescript
+import sgMail from '@sendgrid/mail';
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+
+const msg = {
+  to: process.env.EMAIL_USER,
+  from: process.env.SENDGRID_FROM_EMAIL,
+  subject: `New Contact from ${firstName} ${lastName}`,
+  html: `...`
+};
+
+await sgMail.send(msg);
+```
+
+### Using Resend (Modern alternative)
+
+```bash
+pnpm add resend
+```
+
+```typescript
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+await resend.emails.send({
+  from: 'contact@yourdomain.com',
+  to: 'your-email@gmail.com',
+  subject: 'New Contact Form',
+  html: '...'
+});
+```
+
+## Testing Your Contact Form
+
+1. Start your dev server: `pnpm dev`
+2. Go to `http://localhost:3000/contact`
+3. Fill out the form with test data
+4. Check your email inbox
+5. Check browser console for any errors
+
+## Production Considerations
+
+1. **Add reCAPTCHA** to prevent spam bots
+2. **Implement rate limiting** (max 5 emails per hour per IP)
+3. **Use a professional email service** (SendGrid, Resend, AWS SES)
+4. **Add email queue** for better reliability
+5. **Log all submissions** for tracking
+
+## Troubleshooting
+
+### "Invalid credentials" error
+- Double-check your Gmail App Password
+- Make sure 2FA is enabled
+- Regenerate the App Password
+
+### Emails not sending
+- Check your `.env.local` file exists
+- Verify EMAIL_USER and EMAIL_PASSWORD are correct
+- Check spam folder
+- Look at server console for error messages
+
+### CORS errors
+- Make sure your API route is at `app/api/contact/route.ts`
+- Restart your dev server after adding env variables
+
+## Portfolio Links Setup
+
+In `portfolio/page.tsx`, update the `projects` array with your actual project URLs:
+
+```typescript
+const projects = [
+  {
+    id: 1,
+    title: 'Your Project Name',
+    // ... other fields
+    liveUrl: 'https://your-live-project.com',
+    githubUrl: 'https://github.com/yourusername/project',
+  }
+];
+```
