@@ -1,0 +1,8 @@
+name = "eml-website"
+compatibility_date = "2025-12-22"  # Or today's date
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+
+main = ".open-next/server/index.mjs"
