@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+   output: 'export',
   /* config options here */
     images: {
     // Add the quality value (85) from your component
