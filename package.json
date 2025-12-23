@@ -6,8 +6,7 @@
     "devlocal": "next dev --turbopack",
     "buildlocal": "next build --turbopack",
     "start": "next start",
-    "build": "next build",
-    "export": "next export"
+    "build": "next build"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.8.0",
