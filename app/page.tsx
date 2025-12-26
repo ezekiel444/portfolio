@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import {SiYoutube, SiTiktok, SiFacebook, SiGithub, SiGitlab, SiInstagram, SiX} from '@icons-pack/react-simple-icons';
+// import {SiYoutube, SiTiktok, SiFacebook, SiGithub, SiGitlab, SiInstagram, SiX} from '@icons-pack/react-simple-icons';
 import { useState, useEffect } from 'react';
 import fruitImages from './FoodImg';
 
