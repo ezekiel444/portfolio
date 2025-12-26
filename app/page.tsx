@@ -65,7 +65,7 @@ export default function Home() {
             {/* Portfolio */}
             {/* </Link> */}
             <a
-              href="https://matomi.netlify.app/"
+              href="https://portfolio.ezekielmatomilucky.com"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] text-gray-900 text-xl font-medium rounded-full text-center transition-colors"
