@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ezekielmatomilucky.com'),
   title: 'Matomi Lucky Ezekiel | DevOps Engineer & Full Stack Developer',
   description: 'Portfolio of Matomi Lucky Ezekiel - DevOps Engineer specializing in Cloud Computing, Kubernetes, Docker, Azure, AWS, and Full Stack Development. Based in Lyon, France.',
-  // keywords: ['DevOps Engineer', 'Cloud Computing', 'Kubernetes', 'Docker', 'Full Stack Developer', 'Azure', 'AWS', 'React', 'Next.js', 'Matomi Lucky Ezekiel'],
+  keywords: ['DevOps Engineer', 'Cloud Computing', 'Kubernetes', 'Docker', 'Full Stack Developer', 'Azure', 'AWS', 'React', 'Next.js', 'Matomi Lucky Ezekiel'],
   authors: [{ name: 'Matomi Lucky Ezekiel' }],
   creator: 'Matomi Lucky Ezekiel',
   publisher: 'Matomi Lucky Ezekiel',
