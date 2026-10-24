@@ -145,13 +145,13 @@ export default function AboutPage() {
               <div className="mt-6 space-y-2 pt-4 border-t border-white/15">
                 <p className="text-gray-200">
                   <span className="font-semibold text-white">📧 Email:</span>{' '}
-                  <a href="mailto:matomiezekiel6@gmail.com" className="hover:text-[#e89b5c] transition-colors underline decoration-dotted">
+                  <a href="mailto:matomiezekiel6@gmail.com" className="hover:text-[#e89b5c] transition-colors no-underline text-white font-medium">
                     matomiezekiel6@gmail.com
                   </a>
                 </p>
                 <p className="text-gray-200">
                   <span className="font-semibold text-white">📱 Phone:</span>{' '}
-                  <a href="tel:+33753432920" className="hover:text-[#e89b5c] transition-colors">
+                  <a href="tel:+33753432920" className="hover:text-[#e89b5c] transition-colors text-white font-medium no-underline">
                     +33 7 53 43 29 20
                   </a>
                 </p>

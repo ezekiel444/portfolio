@@ -5,8 +5,10 @@
   "scripts": {
     "devlocal": "next dev --turbopack",
     "buildlocal": "next build --turbopack",
-    "start": "next start",
-    "build": "next build"
+    "start": "npx -y serve out",
+    "build": "next build",
+    "dev": "next dev --turbopack",
+    "preview": "npx -y serve out"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.8.0",

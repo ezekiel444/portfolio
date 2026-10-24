@@ -1,163 +1,92 @@
+# Ezekiel Matomi Lucky — Portfolio Website
 
-# Contact Form Email Setup Guide
+> **Innovating at the Intersection of Cloud, Code & Community**
 
-## Step 1: Install Required Packages
+Personal portfolio and kinetic showcase for **Ezekiel Matomi Lucky** — DevOps Engineer, Cloud Architect, and Full-Stack Developer. Built with Next.js 16 (App Router), React 19, Tailwind CSS 4, and optimized for high-performance static hosting.
 
+---
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- **UI & Components**: [React 19](https://react.dev/), [Lucide React](https://lucide.dev/), [@icons-pack/react-simple-icons](https://simple-icons.github.io/simple-icons-react/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Deployment**: Static HTML Export (`output: 'export'`), optimized for Cloudflare Pages, GitHub Pages, or Vercel static hosting
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Prerequisites
+Make sure you have Node.js 20+ and `pnpm` (or `npm`) installed.
+
+### 2. Install Dependencies
 ```bash
-pnpm add nodemailer isomorphic-dompurify
-pnpm add -D @types/nodemailer
+pnpm install
+# or
+npm install
 ```
 
-## Step 2: Setup Gmail App Password
-
-1. Go to your Google Account: https://myaccount.google.com/
-2. Click on "Security" in the left sidebar
-3. Enable "2-Step Verification" if not already enabled
-4. After enabling 2FA, go back to Security
-5. Search for "App passwords" or scroll down to find it
-6. Click "App passwords"
-7. Select "Mail" and "Other (Custom name)"
-8. Enter "Portfolio Contact Form"
-9. Click "Generate"
-10. Copy the 16-character password (save it securely!)
-
-## Step 3: Create Environment Variables
-
-Create a `.env.local` file in your project root:
-
-```env
-EMAIL_USER=your-gmail@gmail.com
-EMAIL_PASSWORD=your-16-char-app-password
-```
-
-**Important:** Add `.env.local` to your `.gitignore` file!
-
-## Step 4: Project Structure
-
-Your project should look like this:
-
-```
-app/
-├── api/
-│   └── contact/
-│       └── route.ts        (The API endpoint)
-├── contact/
-│   └── page.tsx           (The contact form)
-├── portfolio/
-│   └── page.tsx           (Portfolio with links)
-└── ...
-
-.env.local                 (Your email credentials)
-```
-
-## Security Features Implemented
-
-### 1. **XSS Protection** (Cross-Site Scripting)
-- Uses `DOMPurify` to sanitize all user inputs
-- Strips all HTML tags and dangerous characters
-- Prevents malicious script injection
-
-### 2. **Input Validation**
-- Email format validation with regex
-- Length limits on all fields (prevents buffer overflow)
-- Required field validation
-
-### 3. **Rate Limiting** (Recommended)
-For production, add rate limiting to prevent spam:
-
+### 3. Development Server
+Run the local development server with Turbopack:
 ```bash
-pnpm add @upstash/ratelimit @upstash/redis
+pnpm dev
+# or
+pnpm devlocal
+# or
+npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Alternative Email Services
+---
 
-### Using SendGrid (Recommended for production)
+## 📦 Building and Previewing
 
+This project is configured with `output: 'export'` in `next.config.ts`, producing a standalone static site inside the `out/` directory.
+
+### Build Production Static Export
 ```bash
-pnpm add @sendgrid/mail
+pnpm build
+# or
+npm run build
 ```
+This compiles TypeScript, optimizes static assets, and exports HTML/CSS/JS to the `out/` folder.
 
-Update your API route:
-
-```typescript
-import sgMail from '@sendgrid/mail';
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
-
-const msg = {
-  to: process.env.EMAIL_USER,
-  from: process.env.SENDGRID_FROM_EMAIL,
-  subject: `New Contact from ${firstName} ${lastName}`,
-  html: `...`
-};
-
-await sgMail.send(msg);
-```
-
-### Using Resend (Modern alternative)
-
+### Preview the Static Export Locally
+Because the project uses static export, `next start` (which requires a Node.js server) is replaced by a local static file server:
 ```bash
-pnpm add resend
+pnpm start
+# or
+npx serve out
+```
+> **Note**: `next start` does not work with `output: 'export'`. Running `pnpm start` runs `npx -y serve out` to preview the production build.
+
+---
+
+## 📂 Project Structure
+
+```
+├── app/
+│   ├── about/
+│   │   ├── page.tsx                        # About Me page (Bio, Education, Experience, Skills)
+│   │   ├── SophisticatedPortraitMotion.tsx # Kinetic portrait motion graphic
+│   │   └── MotionCard.tsx                  # Interactive motion cards
+│   ├── layout.tsx                          # Root layout & font configurations
+│   ├── page.tsx                            # Home page with kinetic avatar & fluid image showcase
+│   ├── KineticBrandAvatar.tsx              # Interactive brand kinetic avatar
+│   ├── FoodImg.tsx                         # Image array & metadata
+│   └── globals.css                         # Global Tailwind styles
+├── public/
+│   ├── about_profile_picx/                 # High-resolution profile photography
+│   ├── food-pictures/                      # Carousel media assets
+│   └── logo/                               # Social & tech stack SVG icons
+├── unuse/                                  # Archived modules (contact API, legacy pages)
+├── next.config.ts                          # Next.js configuration (static export, image unoptimized)
+├── package.json                            # Scripts and dependencies
+└── tsconfig.json                           # TypeScript configuration
 ```
 
-```typescript
-import { Resend } from 'resend';
+---
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-await resend.emails.send({
-  from: 'contact@yourdomain.com',
-  to: 'your-email@gmail.com',
-  subject: 'New Contact Form',
-  html: '...'
-});
-```
-
-## Testing Your Contact Form
-
-1. Start your dev server: `pnpm dev`
-2. Go to `http://localhost:3000/contact`
-3. Fill out the form with test data
-4. Check your email inbox
-5. Check browser console for any errors
-
-## Production Considerations
-
-1. **Add reCAPTCHA** to prevent spam bots
-2. **Implement rate limiting** (max 5 emails per hour per IP)
-3. **Use a professional email service** (SendGrid, Resend, AWS SES)
-4. **Add email queue** for better reliability
-5. **Log all submissions** for tracking
-
-## Troubleshooting
-
-### "Invalid credentials" error
-- Double-check your Gmail App Password
-- Make sure 2FA is enabled
-- Regenerate the App Password
-
-### Emails not sending
-- Check your `.env.local` file exists
-- Verify EMAIL_USER and EMAIL_PASSWORD are correct
-- Check spam folder
-- Look at server console for error messages
-
-### CORS errors
-- Make sure your API route is at `app/api/contact/route.ts`
-- Restart your dev server after adding env variables
-
-## Portfolio Links Setup
-
-In `portfolio/page.tsx`, update the `projects` array with your actual project URLs:
-
-```typescript
-const projects = [
-  {
-    id: 1,
-    title: 'Your Project Name',
-    // ... other fields
-    liveUrl: 'https://your-live-project.com',
-    githubUrl: 'https://github.com/yourusername/project',
-  }
-];
-```
+## 📄 License
+Private portfolio of Ezekiel Matomi Lucky. All rights reserved.
