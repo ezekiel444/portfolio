@@ -1,1 +1,94 @@
 @import "tailwindcss";
+
+:root {
+  --brand-amber: #e89b5c;
+  --brand-emerald: #10b981;
+  --brand-cyan: #06b6d4;
+  --bg-deep: #080b11;
+}
+
+@keyframes spin-beam {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes float-badge-1 {
+  0%, 100% {
+    transform: translateY(0px) translateZ(40px);
+  }
+  50% {
+    transform: translateY(-8px) translateZ(40px);
+  }
+}
+
+@keyframes float-badge-2 {
+  0%, 100% {
+    transform: translateY(0px) translateZ(35px);
+  }
+  50% {
+    transform: translateY(6px) translateZ(35px);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-spin-beam {
+  animation: spin-beam 5s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animate-float-1 {
+  animation: float-badge-1 4s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-badge-2 5s ease-in-out infinite;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Custom subtle glass scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080b11;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 155, 92, 0.4);
+}
