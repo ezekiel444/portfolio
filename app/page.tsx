@@ -44,7 +44,7 @@ export default function Home() {
             EZEKIEL Matomi Lucky
           </h1>
           <p className="text-lg text-gray-200 text-center font-light">
-            All About Open-Source Community
+            Innovating at the Intersection of Cloud, Code & Community
           </p>
         </div>
 
@@ -54,11 +54,8 @@ export default function Home() {
             href="/about"
             className="group block w-full py-4 px-6 bg-[#c9ccc4] hover:bg-[#b8bbb3] active:scale-[0.98] text-gray-900 text-xl font-medium rounded-full text-center transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-black/20 relative overflow-hidden"
           >
-            <span className="relative z-10 flex items-center justify-center gap-2">
+            <span className="relative z-10 flex items-center justify-center">
               <span>About</span>
-              <span className="inline-block transform group-hover:translate-x-1.5 transition-transform text-[#2d4a2d]">
-                &rarr;
-              </span>
             </span>
           </Link>
         </div>
