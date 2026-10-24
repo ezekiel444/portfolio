@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 
 export default function KineticBrandAvatar() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -201,27 +202,32 @@ export default function KineticBrandAvatar() {
         }}
       />
 
-      {/* Core Sculpted EML Emblem */}
+      {/* Core Sculpted Portrait Emblem */}
       <div
         style={{
           transform: `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(${isInteracting ? 1.05 : 1}, ${isInteracting ? 1.05 : 1}, 1)`,
           transformStyle: 'preserve-3d',
           transition: isInteracting ? 'transform 0.1s ease-out' : 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
         }}
-        className="relative z-10 w-32 h-32 rounded-full p-[2px] bg-gradient-to-tr from-[#e89b5c] via-white/20 to-[#2d4a2d] shadow-2xl shadow-black/60 flex items-center justify-center overflow-hidden"
+        className="relative z-10 w-32 h-32 rounded-full p-[2px] bg-gradient-to-tr from-[#e89b5c] via-white/30 to-[#2d4a2d] shadow-2xl shadow-black/60 flex items-center justify-center overflow-hidden"
       >
-        <div className="w-full h-full rounded-full bg-[#2d4a2d] flex items-center justify-center relative overflow-hidden">
+        <div className="w-full h-full rounded-full bg-[#2d4a2d] relative overflow-hidden">
+          <Image
+            src="/about_profile_picx/about_me_picx.png"
+            alt="EZEKIEL Matomi Lucky"
+            fill
+            sizes="128px"
+            priority
+            className="object-cover object-top"
+          />
           {/* Specular sheen */}
           <div
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none mix-blend-overlay"
             style={{
-              background: `radial-gradient(circle at ${(tilt.x + 1) * 50}% ${(tilt.y + 1) * 50}%, rgba(255, 255, 255, 0.3) 0%, transparent 60%)`,
+              background: `radial-gradient(circle at ${(tilt.x + 1) * 50}% ${(tilt.y + 1) * 50}%, rgba(255, 255, 255, 0.45) 0%, transparent 60%)`,
               opacity: isInteracting ? 0.9 : 0.3,
             }}
           />
-          <span className="text-4xl font-bold text-[#e89b5c] italic tracking-wider select-none relative z-10">
-            EML
-          </span>
         </div>
       </div>
     </div>
