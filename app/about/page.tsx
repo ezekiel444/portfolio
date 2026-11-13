@@ -150,12 +150,6 @@ export default function AboutPage() {
                   </a>
                 </p>
                 <p className="text-gray-200">
-                  <span className="font-semibold text-white">📱 Phone:</span>{' '}
-                  <a href="tel:+33753432920" className="hover:text-[#e89b5c] transition-colors text-white font-medium no-underline">
-                    +33 7 53 43 29 20
-                  </a>
-                </p>
-                <p className="text-gray-200">
                   <span className="font-semibold text-white">📍 Location:</span> Lyon, France
                 </p>
               </div>
